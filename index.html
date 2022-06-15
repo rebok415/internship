@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Internship Robert ZylaKowalczyk</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style>
+        #studentsList {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .card {
+            border: 4px #000 solid;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 200px;
+            height: 300px;
+            border-radius: 5px;
+            padding: 20px;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+            background: rgb(179, 179, 179);
+        }
+	</style>
+</head>
+<body>
+	<section>
+		<div id="studentsList"> </div>
+	</section>
+	<script>
+    const students = [
+        {
+            name: 'Martin',
+            lastName: 'Lant',
+            marks: [9, 8, null, 7, 5],
+        },
+        {
+            name: 'Francesco',
+            lastName: 'Portus',
+            marks: [5, 4, 2, 3, 2],
+        },
+        {
+            name: 'Bill',
+            lastName: 'Merdoc',
+            marks: [10, null, null, null, 10],
+        },
+        {
+            name: 'John',
+            lastName: 'Entman',
+            marks: [9, 8, 9, 7, 5],
+        },
+    ];
+
+	const list = document.getElementById("studentsList");
+
+	students.forEach((student) => {
+		let card = document.createElement("div");
+        let quantity = 0;
+        let sumMarks = 0;
+        let average = 0;
+        if(student.marks){
+            student.marks.forEach((item) => {
+                if(typeof(item) === "number"){
+                    sumMarks = sumMarks + item;
+                    quantity++;
+                }
+            }); 
+        }
+        average = sumMarks / student.marks.length;
+		card.classList.add("card");
+		card.innerHTML = '<p> Name: <b>' + student.name + '</b></p> <br /> <p> Last name: <b>' + student.lastName + '</b></p> <br /> <p>The quantity of visited lectures :  <b>' + quantity + ' </b></p> <p>average mark:  <b>' + average + ' </b></p>';
+		list.appendChild(card);
+	});
+	</script>
+</body>
+</html>
